@@ -19,7 +19,7 @@ public class GThread implements Runnable {
     }
     @Override
     public void run() {
-        FunctionClient g = new FunctionClient("g", gOutput, value);
+        FunctionClient g = new FunctionClient("G", gOutput, value);
         g.compute();
         System.out.println("finished");
     }

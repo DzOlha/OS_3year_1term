@@ -31,12 +31,12 @@ public class IntOps {
         }
 
         SecureRandom random = new SecureRandom();
-        int r = random.nextInt(22);
+        int r = random.nextInt(12);
 
-        if(x > -1 && x < 20) {
-            if (r > 14) {
+        if(x > -1 && x < 10) {
+            if (r > 8) {
                 return Optional.of(Optional.empty());
-            } else if (r < 8) {
+            } else if (r < 4) {
                 return Optional.of(Optional.of(x * x));
             } else {
                 return Optional.empty();

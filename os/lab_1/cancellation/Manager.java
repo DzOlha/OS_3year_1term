@@ -14,7 +14,7 @@ public class Manager implements Runnable {
     private PipedOutputStream fOutput;
     private PipedOutputStream gOutput;
     private int value;
-    private boolean isFail = true;
+    private String reasonFail = "";
     public Manager(int inputValue){
         fInput = new PipedInputStream();
         gInput = new PipedInputStream();
@@ -46,8 +46,10 @@ public class Manager implements Runnable {
             int y = gInput.read();
             checkFail(y, "G");
 
-            if(!isFail) {
-                System.out.println("Result: " + applyBiOperation(x, y));
+            if(reasonFail.isEmpty()) {
+                System.out.println("\nResult: " + applyBiOperation(x, y));
+            } else {
+                System.out.println("\nResult can not be computed because of: " + reasonFail);
             }
         }catch (IOException ex){}
     }
@@ -55,17 +57,12 @@ public class Manager implements Runnable {
         return x+y;
     }
     private void checkFail(int x, String func){
-        if(x == 0) {
-            System.out.println(func + " = HARD!");
-            isFail = true;
+        if(x == 72) {
+            reasonFail = func + " = HARD FAIL!";
         }
         else {
-            if (x == 1) {
-                System.out.println(func + " = SOFT");
-                isFail = true;
-            } else {
-                System.out.println(func + " = " + x);
-                isFail = false;
+            if (x == 83) {
+                reasonFail = func + " = SOFT FAIL!";
             }
         }
     }

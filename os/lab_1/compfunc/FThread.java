@@ -19,7 +19,7 @@ public class FThread implements Runnable {
     }
     @Override
     public void run() {
-        FunctionClient f = new FunctionClient("f", fOutput, value);
+        FunctionClient f = new FunctionClient("F", fOutput, value);
         f.compute();
         System.out.println("finished");
     }

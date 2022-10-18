@@ -22,10 +22,10 @@ public class FunctionClient {
         assign(type);
     }
     private void assign(String type){
-        if(type == "f"){
+        if(type == "F"){
             function = IntOps::trialF;
         }
-        if(type == "g"){
+        if(type == "G"){
             function = IntOps::trialG;
         }
     }
@@ -35,16 +35,16 @@ public class FunctionClient {
         Optional<Optional<Integer>> packed_result = function.apply(value);
 
         if(!packed_result.isPresent()){
-            result = type + " - hard fail";
-            resultIsNumeric = 0;
+            result = "hard fail";
+            resultIsNumeric = 72;
         } else if (!packed_result.get().isPresent()){
-            result = type + " - soft fail";
-            resultIsNumeric = 1;
+            result = "soft fail";
+            resultIsNumeric = 83;
         } else {
-            result = type + " " + packed_result.get().get();
             resultIsNumeric = packed_result.get().get();
+            result = "computed value = " + resultIsNumeric;
         }
-        System.out.println(result);
+        System.out.println("\n" + type + " - " + result);
         passResultToPipedOutputStream(resultIsNumeric);
     }
 
